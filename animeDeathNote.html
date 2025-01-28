@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Note - Anime</title>
+    <style>
+        /* Reset and General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            line-height: 1.6;
+        }
+
+        h1, h2 {
+            color: #ff4c4c;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #222;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        /* Main Section */
+        .main-content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+        }
+
+        .anime-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .anime-info img {
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .anime-info div {
+            flex: 1;
+        }
+
+        .anime-info h2 {
+            font-size: 2rem;
+        }
+
+        .anime-info p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Character Section */
+        .character-section {
+            margin-top: 30px;
+        }
+
+        .character-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .characters {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .character-card {
+            background-color: #444;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .character-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .character-card h3 {
+            color: #ff4c4c;
+            margin-top: 10px;
+            font-size: 1.5rem;
+        }
+
+        .character-card p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        /* Episode Section */
+        .episode-section {
+            margin-top: 30px;
+        }
+
+        .episode-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .episode-list {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .episode-list li {
+            background-color: #444;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.2rem;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .episode-list li:hover {
+            background-color: #ff4c4c;
+        }
+
+        .video-player {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Death Note</h1>
+        <p>Un anime où la justice et la morale se confrontent à travers un cahier capable de tuer quiconque dont le nom est écrit dedans.</p>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <div class="anime-info">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Death_Note_Logo.svg" alt="Death Note">
+            <div>
+                <h2>Résumé</h2>
+                <p><strong>Death Note</strong> suit l'histoire de Light Yagami, un étudiant de génie qui découvre un carnet mystérieux. Ce carnet, le "Death Note", permet de tuer n'importe qui en écrivant leur nom dedans. Light décide de l'utiliser pour éliminer les criminels et devenir le "dieu du nouveau monde". Mais il doit faire face à L, un détective brillant qui tente de l'arrêter.</p>
+                <p><strong>Genres:</strong> Thriller, Psychologique, Surnaturel</p>
+                <p><strong>Nombre d'épisodes:</strong> 37</p>
+            </div>
+        </div>
+
+        <!-- Character Section -->
+        <div class="character-section">
+            <h2>Les Personnages Principaux</h2>
+            <div class="characters">
+                <!-- Light Yagami -->
+                <div class="character-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Light_Yagami_Anime.png" alt="Light Yagami">
+                    <h3>Light Yagami</h3>
+                    <p>Un étudiant brillant qui trouve le Death Note et décide de l'utiliser pour sa vision de la justice.</p>
+                </div>
+
+                <!-- L -->
+                <div class="character-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/L_Death_Note_Anime.png" alt="L">
+                    <h3>L</h3>
+                    <p>Un détective excentrique et brillant, déterminé à capturer le mystérieux tueur connu sous le nom de Kira.</p>
+                </div>
+
+                <!-- Ryuk -->
+                <div class="character-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Ryuk_Death_Note_Anime.png" alt="Ryuk">
+                    <h3>Ryuk</h3>
+                    <p>Un shinigami (dieu de la mort) qui laisse tomber le Death Note dans le monde des humains, observant Light avec amusement.</p>
+                </div>
+
+                <!-- Misa Amane -->
+                <div class="character-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Misa_Amane_Death_Note_Anime.png" alt="Misa Amane">
+                    <h3>Misa Amane</h3>
+                    <p>Une idol et fervente admiratrice de Kira, elle se retrouve également en possession d'un Death Note.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Episode Section -->
+        <div class="episode-section">
+            <h2>Liste des Épisodes</h2>
+            <ul class="episode-list">
+                <!-- List of Episodes -->
+                <li onclick="playEpisode('4413913.mp4')">Épisode 1 - L'arrivée du Death Note</li>
+                <li onclick="playEpisode('[Si-Subs]_Death_Note_-_02_[E7C13BE9].mp4')">Épisode 2 - Le test de Kira</li>
+                <li onclick="playEpisode('[Si-Subs]_Death_Note_-_03_[E7C13BE9].mp4')">Épisode 3 - La traque de L</li>
+                <!-- Add more episodes here -->
+            </ul>
+
+            <div class="video-player" id="videoPlayer">
+                <video controls id="videoElement" width="100%" height="auto">
+                    <source id="videoSource" src="" type="video/mp4">
+                    Votre navigateur ne prend pas en charge la lecture de vidéo.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Death Note Fanpage. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Fonction pour lire l'épisode sélectionné
+        function playEpisode(episode) {
+            const videoElement = document.getElementById('videoElement');
+            const videoSource = document.getElementById('videoSource');
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            // Mise à jour de la source vidéo avec le bon chemin
+            videoSource.src = `Death-Note/${episode}`;  // Assurez-vous que le dossier 'Death-Note' existe et contient vos fichiers vidéo
+            
+            // Charger la nouvelle vidéo et l'afficher
+            videoElement.load();  // Recharger la vidéo
+            videoPlayer.style.display = 'block';  // Afficher le lecteur vidéo
+            videoElement.play();  // Lire la vidéo
+        }
+    </script>
+
+</body>
+</html>

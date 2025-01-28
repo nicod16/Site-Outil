@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Drive - File Manager & Anime</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #1f2937;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar a:hover {
+            background-color: #374151;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .upload-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .upload-section label {
+            background-color: #2563eb;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .upload-section label:hover {
+            background-color: #1e40af;
+        }
+
+        .upload-section input {
+            display: none;
+        }
+
+        .file-list {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-item button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .favorites-section, .anime-section {
+            display: none;
+        }
+
+        .anime-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .anime-item {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .anime-item:hover {
+            background-color: #2563eb;
+        }
+
+        .anime-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .anime-item h3 {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .episode-item {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #444;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .episode-item:hover {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <h2>Pro Drive</h2>
+        <a href="#" id="files-link">📁 Mes Fichiers</a>
+        <a href="#" id="favorites-link">⭐ Favoris</a>
+        <a href="#" id="anime-link">📺 Animes</a>
+    </aside>
+    <div class="main-content">
+        <!-- Section Import/Manage Files -->
+        <div class="upload-section">
+            <label for="file-upload">📄 Importer des fichiers</label>
+            <input type="file" id="file-upload" multiple>
+            <label for="folder-upload">📁 Importer un dossier</label>
+            <input type="file" id="folder-upload" webkitdirectory multiple>
+        </div>
+        <div class="file-list" id="file-list"></div>
+
+        <!-- Section Favoris -->
+        <div class="favorites-section" id="favorites-section">
+            <h2>Favoris</h2>
+            <div id="favorite-files-list"></div>
+        </div>
+
+        <!-- Section Animes -->
+        <div class="anime-section" id="anime-section">
+            <h2>Regarder des Animes</h2>
+            <div class="anime-list" id="anime-list">
+                <div class="anime-item" onclick="openAnimePage('deathNote')">
+                    <img src="https://via.placeholder.com/200x300?text=Death+Note" alt="Death Note">
+                    <h3>Death Note</h3>
+                </div>
+                <div class="anime-item" onclick="openAnimePage('anime1')">
+                    <img src="https://via.placeholder.com/200x300?text=Anime+1" alt="Anime 1">
+                    <h3>Anime 1</h3>
+                </div>
+                <div class="anime-item" onclick="openAnimePage('anime2')">
+                    <img src="https://via.placeholder.com/200x300?text=Anime+2" alt="Anime 2">
+                    <h3>Anime 2</h3>
+                </div>
+                <!-- Ajoutez d'autres animes ici -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-upload');
+        const folderInput = document.getElementById('folder-upload');
+        const fileList = document.getElementById('file-list');
+        const favoriteFilesList = document.getElementById('favorite-files-list');
+        const favoritesSection = document.getElementById('favorites-section');
+        const animeSection = document.getElementById('anime-section');
+        const filesLink = document.getElementById('files-link');
+        const favoritesLink = document.getElementById('favorites-link');
+        const animeLink = document.getElementById('anime-link');
+
+        let files = JSON.parse(localStorage.getItem('files')) || [];
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+        function saveFiles() {
+            localStorage.setItem('files', JSON.stringify(files));
+        }
+
+        function saveFavorites() {
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+
+        function renderFileList() {
+            fileList.innerHTML = '';
+            files.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                const isFavorite = favorites.includes(file.path);
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = ` 
+                    <span class="file-name">${file.path}</span>
+                    <div>
+                        <button onclick="downloadFile(${index})">⬇️</button>
+                        <button onclick="deleteFile(${index})">❌</button>
+                        <button onclick="toggleFavorite(${index})">
+                            ${isFavorite ? '⭐' : '☆'}
+                        </button>
+                    </div>
+                `;
+                fileList.appendChild(fileItem);
+            });
+        }
+
+        function renderFavorites() {
+            favoriteFilesList.innerHTML = '';
+            favorites.forEach((filePath) => {
+                const favoriteItem = document.createElement('div');
+                favoriteItem.className = 'file-item';
+                favoriteItem.innerHTML = ` 
+                    <span>${filePath}</span>
+                    <button onclick="removeFromFavorites('${filePath}')">❌</button>
+                `;
+                favoriteFilesList.appendChild(favoriteItem);
+            });
+        }
+
+        function handleFileUpload(e) {
+            const uploadedFiles = Array.from(e.target.files).map(file => ({
+                name: file.name,
+                path: file.webkitRelativePath || file.name
+            }));
+            files = [...files, ...uploadedFiles];
+            saveFiles();
+            renderFileList();
+        }
+
+        function deleteFile(index) {
+            files.splice(index, 1);
+            saveFiles();
+            renderFileList();
+        }
+
+        function downloadFile(index) {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(new Blob([files[index].name], { type: 'application/octet-stream' }));
+            link.download = files[index].name;
+            link.click();
+        }
+
+        function toggleFavorite(index) {
+            const file = files[index];
+            if (favorites.includes(file.path)) {
+                favorites = favorites.filter(fav => fav !== file.path);
+            } else {
+                favorites.push(file.path);
+            }
+            saveFavorites();
+            renderFileList();
+            renderFavorites();
+        }
+
+        function removeFromFavorites(filePath) {
+            favorites = favorites.filter(fav => fav !== filePath);
+            saveFavorites();
+            renderFavorites();
+        }
+
+        function openAnimePage(anime) {
+            if (anime === 'deathNote') {
+                window.location.href = 'animeDeathNote.html'; // Ouvre la page Death Note
+            }
+            // Ajouter d'autres conditions pour rediriger vers différentes pages d'animes
+        }
+
+        filesLink.addEventListener('click', () => {
+            animeSection.style.display = 'none';
+            favoritesSection.style.display = 'none';
+            fileList.style.display = 'block';
+        });
+
+        favoritesLink.addEventListener('click', () => {
+            animeSection.style.display = 'none';
+            fileList.style.display = 'none';
+            favoritesSection.style.display = 'block';
+            renderFavorites();
+        });
+
+        animeLink.addEventListener('click', () => {
+            fileList.style.display = 'none';
+            favoritesSection.style.display = 'none';
+            animeSection.style.display = 'block';
+        });
+
+        fileInput.addEventListener('change', handleFileUpload);
+        folderInput.addEventListener('change', handleFileUpload);
+
+        renderFileList();
+    </script>
+</body>
+</html>
