@@ -187,9 +187,9 @@
                     <img src="./img/deathnote.png" alt="Death Note">
                     <h3>Death Note</h3>
                 </div>
-                <div class="anime-item" onclick="openAnimePage('anime1')">
-                    <img src="./img/21.gif" alt="Anime 1">
-                    <h3>...</h3>
+                <div class="anime-item" onclick="openAnimePage('The-Eminence-in-Shadow')">
+                    <img src="./img/theEminenceInShadow.png" alt="The Eminence in Shadow">
+                    <h3>The Eminence in Shadow</h3>
                 </div>
                 <div class="anime-item" onclick="openAnimePage('anime2')">
                     <img src="./img/21.gif" alt="Anime 2">
@@ -299,6 +299,9 @@
         function openAnimePage(anime) {
             if (anime === 'deathNote') {
                 window.location.href = 'animeDeathNote.html'; // Ouvre la page Death Note
+            }
+            if (anime === 'The-Eminence-in-Shadow') {
+                window.location.href = 'animeTheEminenceinShadow.html'; // Ouvre la page the Eminence in Shadow
             }
             // Ajouter d'autres conditions pour rediriger vers différentes pages d'animes
         }
