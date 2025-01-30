@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlord - Anime</title>
+    <style>
+        /* Reset et Styles Généraux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            line-height: 1.6;
+        }
+
+        h1, h2 {
+            color: #48ce13;
+        }
+
+        header {
+            background-color: #222;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+        }
+
+        .anime-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .anime-info img {
+            width: 300px;
+            border-radius: 8px;
+        }
+
+        .characters {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .character-card {
+            background-color: #444;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .seasons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .season-list {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .season-btn {
+            background-color: #ffa600;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .episodes {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .episode-list {
+            list-style-type: none;
+        }
+
+        .episode-list li {
+            background-color: #444;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .video-player {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DR Stone</h1>
+        <p>Un anime où un jeune homme rêve de devenir une puissance de l'ombre.</p>
+    </header>
+
+    <div class="main-content">
+        <div class="anime-info">
+            <img src="./img/DRStone.jpg" alt="Overlord">
+            <div>
+                <h2>Résumé</h2>
+                <p>
+                    Après qu'un mystérieux phénomène ait pétrifié l'humanité pendant plus de 3 700 ans, le génie scientifique Senku Ishigami se réveille dans un monde où la civilisation a disparu. Déterminé à restaurer l'humanité grâce à la science, il entreprend de reconstruire la technologie depuis zéro. Avec l’aide de son ami Taiju et d’autres alliés, il affronte divers défis, allant de la redécouverte des inventions du passé à la confrontation avec des adversaires opposés à son idéal de progrès.
+                </p>
+                <p><strong>Genres :</strong> Aventure, Science-fiction, Shōnen</p>
+                <p><strong>Nombre de saisons :</strong> 3</p>
+            </div>
+        </div>
+
+        <div class="seasons">
+            <h2>Liste des Saisons</h2>
+            <div class="season-list">
+                <button class="season-btn" onclick="showEpisodes(1)">Saison 1</button>
+                <button class="season-btn" onclick="showEpisodes(2)">Saison 2</button>
+                <button class="season-btn" onclick="showEpisodes(3)">Saison 3</button>
+            </div>
+        </div>
+
+        <div id="episodes-1" class="episodes">
+            <h2>Épisodes de la Saison 1</h2>
+            <ul class="episode-list">
+                <li onclick="playEpisode('4522504.mp4')">Épisode 1</li>
+            </ul>
+        </div>
+
+        <div id="episodes-2" class="episodes">
+            <h2>Épisodes de la Saison 2</h2>
+            <ul class="episode-list">
+            </ul>
+        </div>
+
+        <div id="episodes-3" class="episodes">
+            <h2>Épisodes de la Saison 3</h2>
+            <ul class="episode-list">
+            </ul>
+        </div>
+
+        <div class="video-player" id="videoPlayer">
+            <video controls id="videoElement" width="100%">
+                <source id="videoSource" src="" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        function showEpisodes(season) {
+            document.querySelectorAll('.episodes').forEach(div => div.style.display = 'none');
+            document.getElementById(`episodes-${season}`).style.display = 'block';
+        }
+
+        function playEpisode(episode) {
+            const videoElement = document.getElementById('videoElement');
+            const videoSource = document.getElementById('videoSource');
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            videoSource.src = `Doctor-Stone/${episode}`;
+            videoElement.load();
+            videoPlayer.style.display = 'block';
+            videoElement.play();
+        }
+    </script>
+</body>
+</html>
